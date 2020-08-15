@@ -7,20 +7,22 @@ pipeline {
    }
 
    stages {
+      /*
       stage('Initialize'){
 		 steps {
 		    script {
 		        def dockerHome = tool 'myDocker'
-		    
                 env.PATH = "${dockerHome}/bin:${env.PATH}"
 		    }
 		 }
       }
+	  */
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
             //git credentialsId: 'gituser', url: 'ssh://gituser@gitrepos.sg/gitrepos/demotest.git'
-            git credentialsId: 'gituser', url: 'ssh://gituser@192.168.0.209/gitrepos/demotest.git'
+            //git credentialsId: 'gituser', url: 'ssh://gituser@192.168.0.209/gitrepos/demotest.git'
+            git credentialsId: 'github_credential', url: 'https://github.com/thamyt/spring-demos.git' 
 
             // Run Maven on a Unix agent.
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
@@ -42,11 +44,10 @@ pipeline {
                sh "cp ./target/*.war ./docker/tomcat/webapps"
 
 			   echo "my build is successful...   :)"
-			   
-			   
             }
          }
       }
+	  /*
       stage('Build Docker Images') {
         steps {
             script {
@@ -63,6 +64,7 @@ pipeline {
             }
 		}
 	  }
+	  */
 	  /*
 	  stage('Deploy to Production') {
         steps {
