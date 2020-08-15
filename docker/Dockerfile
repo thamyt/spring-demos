@@ -6,4 +6,6 @@ MAINTAINER ThamYT <thamyt75@gmail.com>
 #ADD context.xml /usr/local/tomcat/webapps/manager/META-INF/
 
 # Copy all the war files to the webapps
-ADD ./wars/*.war /usr/local/tomcat/webapps/
+ADD ./wars/spring4-mvc.war /usr/local/tomcat/webapps/
+ADD ./wars/spring5-mvc.war /usr/local/tomcat/webapps/
+ADD ./wars/springboot2-mvc.war /usr/local/tomcat/webapps/
