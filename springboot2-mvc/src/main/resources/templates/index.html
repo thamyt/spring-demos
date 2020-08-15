@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Spring Boot Web MVC Demo</title>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+	<div class="w3-container">
+		<div class="w3-panel w3-bottombar w3-border-blue">
+			<h1>Spring Boot Web MVC Demo</h1>
+		</div>
+
+		<table class="w3-table w3-striped w3-border">
+			<tr>
+				<th style="width:150px">Server Data</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td class="w3-text-gray">IP Address:</td>
+				<td class="w3-left-align" th:text="${serverDataDTO.ipaddr}"></td>
+			</tr>
+			<tr>
+				<td class="w3-text-gray">Hostname:</td>
+				<td class="w3-left-align" th:text="${serverDataDTO.hostname}"></td>
+			</tr>
+			<tr>
+				<td class="w3-text-gray">Server Time:</td>
+				<td class="w3-left-align" th:text="${serverDataDTO.clocktime}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

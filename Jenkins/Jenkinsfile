@@ -1,0 +1,78 @@
+pipeline {
+   agent any
+
+   tools {
+      // Install the Maven version configured as "M3" and add it to the path.
+      maven "maven 3.6.3"
+   }
+
+   stages {
+      stage('Initialize'){
+		 steps {
+		    script {
+		        def dockerHome = tool 'myDocker'
+		    
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
+		    }
+		 }
+      }
+      stage('Build') {
+         steps {
+            // Get some code from a GitHub repository
+            //git credentialsId: 'gituser', url: 'ssh://gituser@gitrepos.sg/gitrepos/demotest.git'
+            git credentialsId: 'gituser', url: 'ssh://gituser@192.168.0.209/gitrepos/demotest.git'
+
+            // Run Maven on a Unix agent.
+            sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+         }
+
+         post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
+            success {
+               // junit '**/target/surefire-reports/TEST-*.xml'
+               // archiveArtifacts 'target/*.jar
+               
+               echo "env.BUILD_ID = ${env.BUILD_ID}"
+               
+               sh "mkdir -p ./docker/tomcat/webapps"
+               sh "cp ./target/*.war ./docker/tomcat/webapps"
+
+			   echo "my build is successful...   :)"
+			   
+			   
+            }
+         }
+      }
+      stage('Build Docker Images') {
+        steps {
+            script {
+              def websvrImage = docker.build("dockereg.sg:5000/mywebsvr:${env.BUILD_ID}", "./docker/httpd")
+              def tomcatImage = docker.build("dockereg.sg:5000/mytomcat:${env.BUILD_ID}", "./docker/tomcat")
+              
+              //def websvrImage = docker.build("dockereg.sg:5000/mywebsvr", "./docker/httpd")
+              //def tomcatImage = docker.build("dockereg.sg:5000/mytomcat", "./docker/tomcat")
+              
+              websvrImage.push()
+              tomcatImage.push()
+              websvrImage.push('latest')
+              tomcatImage.push('latest')
+            }
+		}
+	  }
+	  /*
+	  stage('Deploy to Production') {
+        steps {
+			// stop and remove services
+            sh "docker-compose -f ./docker/docker-compose.yml down"
+			
+			// start the services
+            sh "docker-compose -f ./docker/docker-compose.yml up -d"
+		}
+	  }
+	  */
+   }
+}
