@@ -9,3 +9,5 @@ MAINTAINER ThamYT <thamyt75@gmail.com>
 ADD ./wars/spring4-mvc.war /usr/local/tomcat/webapps/
 ADD ./wars/spring5-mvc.war /usr/local/tomcat/webapps/
 ADD ./wars/springboot2-mvc.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080/tcp
