@@ -12,4 +12,55 @@
     <artifactId>spring5-mvc</artifactId>
 	<packaging>war</packaging>
 
+    <properties>
+        <spring.version>5.2.8.RELEASE</spring.version>
+        <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+    </properties>
+
+    <name>Spring5 MVC Demo</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>${thymeleaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>${thymeleaf.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>spring5-mvc</finalName>
+    </build>
+
 </project>

@@ -15,47 +15,12 @@
     </modules>
 
     <properties>
-        <spring4.version>4.3.24.RELEASE</spring4.version>
-        <spring5.version>4.3.24.RELEASE</spring5.version>
         <spring.security.version>4.2.6.RELEASE</spring.security.version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring framework -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring4.version}</version>
-            </dependency>
-
-            <!-- thymeleaf -->
-            <dependency>
-                <groupId>org.thymeleaf</groupId>
-                <artifactId>thymeleaf</artifactId>
-                <version>${thymeleaf.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.thymeleaf</groupId>
-                <artifactId>thymeleaf-spring4</artifactId>
-                <version>${thymeleaf.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
