@@ -7,7 +7,6 @@ pipeline {
    }
 
    stages {
-      /*
       stage('Initialize'){
 		 steps {
 		    script {
@@ -16,7 +15,6 @@ pipeline {
 		    }
 		 }
       }
-	  */
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
@@ -40,31 +38,24 @@ pipeline {
                
                echo "env.BUILD_ID = ${env.BUILD_ID}"
                
-               sh "mkdir -p ./docker/tomcat/webapps"
-               sh "cp ./target/*.war ./docker/tomcat/webapps"
+               sh "mkdir -p ./docker/wars"
+               sh "cp ./spring4-mvc/target/*.war ./docker/wars"
+			   sh "cp ./spring5-mvc/target/*.war ./docker/wars"
+			   sh "cp ./springboot2-mvc/target/*.war ./docker/wars"
 
 			   echo "my build is successful...   :)"
             }
          }
       }
-	  /*
       stage('Build Docker Images') {
         steps {
             script {
-              def websvrImage = docker.build("dockereg.sg:5000/mywebsvr:${env.BUILD_ID}", "./docker/httpd")
-              def tomcatImage = docker.build("dockereg.sg:5000/mytomcat:${env.BUILD_ID}", "./docker/tomcat")
-              
-              //def websvrImage = docker.build("dockereg.sg:5000/mywebsvr", "./docker/httpd")
-              //def tomcatImage = docker.build("dockereg.sg:5000/mytomcat", "./docker/tomcat")
-              
-              websvrImage.push()
-              tomcatImage.push()
-              websvrImage.push('latest')
-              tomcatImage.push('latest')
+              def springDemos = docker.build("datarepo.myhome.tyt/spring-demos:${env.BUILD_ID}", "./docker")
+              springDemos.push()
+              springDemos.push('latest')
             }
 		}
 	  }
-	  */
 	  /*
 	  stage('Deploy to Production') {
         steps {
