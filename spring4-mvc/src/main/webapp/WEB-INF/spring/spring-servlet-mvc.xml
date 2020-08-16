@@ -11,7 +11,7 @@
                            http://www.springframework.org/schema/context/spring-context.xsd ">
    	
    	<!-- Scans within the base package of the application for @Component classes to configure as beans --> 
-    <context:component-scan base-package="sg.yiapp.mvcdemo.error, sg.yiapp.mvcdemo.controller" />
+    <context:component-scan base-package="org.example.spring4_mvc.error, org.example.spring4_mvc.controller" />
     
     <mvc:annotation-driven/>
     

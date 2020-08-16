@@ -57,7 +57,7 @@
             <artifactId>thymeleaf-spring5</artifactId>
             <version>${thymeleaf.version}</version>
         </dependency>
-    </dependencies>
+     </dependencies>
 
     <build>
         <finalName>spring5-mvc</finalName>

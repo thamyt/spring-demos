@@ -1,4 +1,4 @@
-package com.example.springbootwebmvcdemo;
+package org.example.springboot2_mvc;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

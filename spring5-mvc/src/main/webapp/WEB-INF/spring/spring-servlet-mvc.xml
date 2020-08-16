@@ -11,7 +11,7 @@
                            http://www.springframework.org/schema/context/spring-context.xsd ">
    	
    	<!-- Scans within the base package of the application for @Component classes to configure as beans --> 
-    <context:component-scan base-package="sg.yiapp.mvcdemo.error, sg.yiapp.mvcdemo.controller" />
+    <context:component-scan base-package="org.example.spring5_mvc.error, org.example.spring5_mvc.controller" />
     
     <mvc:annotation-driven/>
     
@@ -24,7 +24,7 @@
     
     <!-- SpringResourceTemplateResolver automatically integrates with Spring's own -->
 	<!-- resource resolution infrastructure, which is highly recommended.          -->
-	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+	<bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
   		<property name="prefix" value="/WEB-INF/views/" />
   		<property name="suffix" value=".html" />
   		<!-- HTML is the default value, added here for the sake of clarity.          -->
@@ -36,7 +36,7 @@
     
 	<!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
 	<!-- enables Spring's own MessageSource message resolution mechanisms.         -->
-	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+	<bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
   		<property name="templateResolver" ref="templateResolver" />
   		<!-- Enabling the SpringEL compiler with Spring 4.2.4 or newer can speed up  -->
   		<!-- execution in most scenarios, but might be incompatible with specific    -->
@@ -46,7 +46,7 @@
   		<property name="enableSpringELCompiler" value="true" />
 	</bean>
     
-    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
   		<property name="templateEngine" ref="templateEngine" />
   		<!-- NOTE 'order' and 'viewNames' are optional -->
   		<property name="order" value="1" />
